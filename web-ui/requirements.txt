@@ -1,0 +1,11 @@
+fastapi>=0.100.0
+uvicorn[standard]>=0.22.0
+python-multipart>=0.0.6
+duckdb>=0.8.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+pyarrow>=12.0.0
+plotly>=5.15.0
+SpeechRecognition>=3.10.0
+anthropic>=0.20.0
+google-generativeai>=0.5.0

@@ -1,0 +1,1001 @@
+[
+  {
+    "text": "show all meter details",
+    "normalized": "show all meter details",
+    "sql": "SELECT E.Meter_ID AS Meter_No, MM.Meter_Type, MM.DIP, HM.HES_CD AS HES_Name, E.ID AS EQUIPMENT_ID, MM.Utility_ID AS Material_ID, C.Cons_SEG, CDL.ConsumerID, E.Manufacturer_ID, C.Utility_ID AS ConsumerNo, E.Status, DL.Utility_Office_ID, MM.Description AS Attribute, E.Model_ID, DL.GPS_LAT, DL.GPS_LONG, C.Utility_ID AS Account_No FROM equipment E JOIN devloc_device_link DDL ON E.ID = DDL.EquipmentId JOIN device_location DL ON DL.ID = DDL.DeviceLocationId JOIN consumerdevloclink CDL ON DDL.DeviceLocationId = CDL.DeviceLocationId JOIN consumer C ON C.ID = CDL.ConsumerID JOIN material_master MM ON E.Material_ID = MM.Utility_ID LEFT JOIN hes_master HM ON E.HES_ID = HM.ID",
+    "table": "equipment",
+    "explanation": "Here are all meter details fetched using the Master Join across all 7 tables. This includes meter nu",
+    "chart_type": "table",
+    "count": 14
+  },
+  {
+    "text": "show meter details",
+    "normalized": "show meter details",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Full meter details with consumer, location, HES, material",
+    "chart_type": "table",
+    "count": 12
+  },
+  {
+    "text": "list all meters",
+    "normalized": "list all meters",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, E.\"ID\" AS EQUIPMENT_ID, E.\"Status\", E.\"Manufacturer_ID\", E.\"Model_ID\", E.\"Material_ID\", MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name FROM Equipment E LEFT JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Meter inventory list with status, manufacturer, model, material, meter type, DIP, and HES",
+    "chart_type": "table",
+    "count": 11
+  },
+  {
+    "text": "get meter info",
+    "normalized": "get meter info",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Complete meter information across all linked tables",
+    "chart_type": "table",
+    "count": 10
+  },
+  {
+    "text": "show complete meter data",
+    "normalized": "show complete meter data",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Complete meter data all tables joined",
+    "chart_type": "table",
+    "count": 10
+  },
+  {
+    "text": "show meter details with consumer and location",
+    "normalized": "show meter details with consumer location",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Meter details with consumer, GPS, HES, material",
+    "chart_type": "table",
+    "count": 9
+  },
+  {
+    "text": "show meter by meter id",
+    "normalized": "show meter by meter id",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Meter_ID\" = '{meter_id}'",
+    "params": [
+      "meter_id"
+    ],
+    "table": "equipment",
+    "explanation": "Full meter details filtered by Meter ID",
+    "chart_type": "table",
+    "count": 9
+  },
+  {
+    "text": "show consumer by utility id",
+    "normalized": "show consumer by utility id",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"Utility_ID\" = '{utility_id}'",
+    "params": [
+      "utility_id"
+    ],
+    "table": "consumer",
+    "explanation": "Full details for a specific consumer Utility ID",
+    "chart_type": "table",
+    "count": 9
+  },
+  {
+    "text": "show meter inventory",
+    "normalized": "show meter inventory",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Full meter inventory with all linked data",
+    "chart_type": "table",
+    "count": 8
+  },
+  {
+    "text": "show active meters",
+    "normalized": "show active meters",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Status\" = 'Installed'",
+    "table": "equipment",
+    "explanation": "All installed/active meters with full details",
+    "chart_type": "table",
+    "count": 8
+  },
+  {
+    "text": "count meters",
+    "normalized": "count meters",
+    "sql": "SELECT COUNT(*) AS Total_Meters FROM Equipment",
+    "table": "equipment",
+    "explanation": "Total meter count",
+    "chart_type": "table",
+    "count": 8
+  },
+  {
+    "text": "count meters by status",
+    "normalized": "count meters by status",
+    "sql": "SELECT \"Status\", COUNT(*) AS Meter_Count FROM Equipment GROUP BY \"Status\" ORDER BY Meter_Count DESC",
+    "table": "equipment",
+    "explanation": "Meter count grouped by status",
+    "chart_type": "bar",
+    "count": 8
+  },
+  {
+    "text": "count consumers by segment",
+    "normalized": "count consumers by segment",
+    "sql": "SELECT \"Cons_SEG\", COUNT(*) AS Consumer_Count FROM Consumer GROUP BY \"Cons_SEG\" ORDER BY Consumer_Count DESC",
+    "table": "consumer",
+    "explanation": "Consumer count by segment",
+    "chart_type": "pie",
+    "count": 8
+  },
+  {
+    "text": "display meter information",
+    "normalized": "display meter information",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Full meter info with all related tables",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "fetch all meter records",
+    "normalized": "fetch all meter records",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "All meter records from 7-table join",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show meter and consumer details",
+    "normalized": "show meter consumer details",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Meter details joined with consumer information",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show meter details by consumer id",
+    "normalized": "show meter details by consumer id",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE CDL.\"ConsumerID\" = '{consumer_id}'",
+    "params": [
+      "consumer_id"
+    ],
+    "table": "equipment",
+    "explanation": "Full meter details filtered by Consumer ID",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show inactive meters",
+    "normalized": "show inactive meters",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Status\" != 'Installed'",
+    "table": "equipment",
+    "explanation": "Non-installed/inactive meters",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show residential consumers",
+    "normalized": "show residential consumers",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"Cons_SEG\" = 'Residential'",
+    "table": "consumer",
+    "explanation": "Residential segment consumers with meter details",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show commercial consumers",
+    "normalized": "show commercial consumers",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"Cons_SEG\" = 'Commercial'",
+    "table": "consumer",
+    "explanation": "Commercial segment consumers with meter details",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "count meters per hes",
+    "normalized": "count meters per hes",
+    "sql": "SELECT HM.\"HES_CD\", HM.\"HES_DESCRIPTION\", COUNT(E.\"ID\") AS Meter_Count FROM Equipment E JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" GROUP BY HM.\"HES_CD\", HM.\"HES_DESCRIPTION\" ORDER BY Meter_Count DESC",
+    "table": "hes_master",
+    "explanation": "Number of meters per HES system",
+    "chart_type": "bar",
+    "count": 7
+  },
+  {
+    "text": "show meter type distribution",
+    "normalized": "show meter type distribution",
+    "sql": "SELECT MM.\"Meter_Type\", COUNT(E.\"ID\") AS Meter_Count FROM Equipment E JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" GROUP BY MM.\"Meter_Type\" ORDER BY Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "Distribution of meters by type",
+    "chart_type": "pie",
+    "count": 7
+  },
+  {
+    "text": "show meters by manufacturer count",
+    "normalized": "show meters by manufacturer",
+    "sql": "SELECT \"Manufacturer_ID\", COUNT(*) AS Meter_Count FROM Equipment GROUP BY \"Manufacturer_ID\" ORDER BY Meter_Count DESC",
+    "table": "equipment",
+    "explanation": "Meters grouped by manufacturer",
+    "chart_type": "bar",
+    "count": 7
+  },
+  {
+    "text": "count meters per office",
+    "normalized": "count meters per utility office",
+    "sql": "SELECT DL.\"Utility_Office_ID\", COUNT(E.\"ID\") AS Meter_Count FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" GROUP BY DL.\"Utility_Office_ID\" ORDER BY Meter_Count DESC",
+    "table": "device_location",
+    "explanation": "Meter count per utility office",
+    "chart_type": "bar",
+    "count": 7
+  },
+  {
+    "text": "show devices with gps",
+    "normalized": "show devices with gps",
+    "sql": "SELECT DL.\"ID\", DL.\"Utility_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", DL.\"Utility_Office_ID\", E.\"Meter_ID\" FROM Device_Location DL JOIN DevLoc_Device_Link DDL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN Equipment E ON E.\"ID\" = DDL.\"EquipmentId\" WHERE DL.\"GPS_LAT\" IS NOT NULL AND DL.\"GPS_LONG\" IS NOT NULL",
+    "table": "device_location",
+    "explanation": "Devices that have GPS coordinates",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show devices without gps",
+    "normalized": "show devices without gps",
+    "sql": "SELECT DL.\"ID\", DL.\"Utility_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", DL.\"Utility_Office_ID\" FROM Device_Location DL WHERE DL.\"GPS_LAT\" IS NULL OR DL.\"GPS_LONG\" IS NULL",
+    "table": "device_location",
+    "explanation": "Devices missing GPS coordinates",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "find duplicate meter ids",
+    "normalized": "find duplicate meter ids",
+    "sql": "SELECT \"Meter_ID\", COUNT(*) AS Duplicate_Count FROM Equipment GROUP BY \"Meter_ID\" HAVING COUNT(*) > 1 ORDER BY Duplicate_Count DESC",
+    "table": "equipment",
+    "explanation": "Meters with duplicate Meter_IDs",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show meters without consumer",
+    "normalized": "show meters without consumer",
+    "sql": "SELECT E.\"ID\", E.\"Meter_ID\", E.\"Status\", E.\"Manufacturer_ID\" FROM Equipment E LEFT JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" LEFT JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" WHERE CDL.\"ConsumerID\" IS NULL",
+    "table": "equipment",
+    "explanation": "Meters not linked to any consumer",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show all hes systems",
+    "normalized": "show all hes systems",
+    "sql": "SELECT * FROM HES_MASTER",
+    "table": "hes_master",
+    "explanation": "All registered HES systems",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show all material master",
+    "normalized": "show all material master",
+    "sql": "SELECT * FROM Material_Master",
+    "table": "material_master",
+    "explanation": "All material master records",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show all equipment",
+    "normalized": "show all equipment",
+    "sql": "SELECT * FROM Equipment",
+    "table": "equipment",
+    "explanation": "All equipment records",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show all consumers",
+    "normalized": "show all consumers",
+    "sql": "SELECT * FROM Consumer",
+    "table": "consumer",
+    "explanation": "All consumer records",
+    "chart_type": "table",
+    "count": 7
+  },
+  {
+    "text": "show industrial consumers",
+    "normalized": "show industrial consumers",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"Cons_SEG\" = 'Industrial'",
+    "table": "consumer",
+    "explanation": "Industrial segment consumers with meter details",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "show vip consumers",
+    "normalized": "show vip consumers",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"VIP\" = 'Y'",
+    "table": "consumer",
+    "explanation": "VIP-flagged consumers with full meter details",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "show essential service consumers",
+    "normalized": "show essential service consumers",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"Essential_Service\" = 'Y'",
+    "table": "consumer",
+    "explanation": "Essential service consumers (hospitals, utilities) with meter info",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "show meters by district",
+    "normalized": "show meters by district",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"DISTRICT\" = '{district}'",
+    "params": [
+      "district"
+    ],
+    "table": "consumer",
+    "explanation": "All meters in a specific district",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "show meters by region",
+    "normalized": "show meters by region",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"REGION\" = '{region}'",
+    "params": [
+      "region"
+    ],
+    "table": "consumer",
+    "explanation": "All meters in a specific region",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "count meters by meter type",
+    "normalized": "count meters by meter type",
+    "sql": "SELECT MM.\"Meter_Type\", COUNT(E.\"ID\") AS Meter_Count FROM Equipment E JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" GROUP BY MM.\"Meter_Type\" ORDER BY Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "Meter count grouped by meter type (Single Phase, Three Phase, etc.)",
+    "chart_type": "bar",
+    "count": 6
+  },
+  {
+    "text": "count active vs inactive meters",
+    "normalized": "count active vs inactive meters",
+    "sql": "SELECT CASE WHEN \"Status\" = 'Installed' THEN 'Active' ELSE 'Inactive' END AS Meter_Status, COUNT(*) AS Meter_Count FROM Equipment GROUP BY Meter_Status ORDER BY Meter_Count DESC",
+    "table": "equipment",
+    "explanation": "Active vs inactive meter comparison",
+    "chart_type": "pie",
+    "count": 6
+  },
+  {
+    "text": "count consumers by district",
+    "normalized": "count consumers by district",
+    "sql": "SELECT \"DISTRICT\", COUNT(*) AS Consumer_Count FROM Consumer WHERE \"DISTRICT\" IS NOT NULL GROUP BY \"DISTRICT\" ORDER BY Consumer_Count DESC",
+    "table": "consumer",
+    "explanation": "Consumer distribution across districts",
+    "chart_type": "bar",
+    "count": 6
+  },
+  {
+    "text": "count consumers by region",
+    "normalized": "count consumers by region",
+    "sql": "SELECT \"REGION\", COUNT(*) AS Consumer_Count FROM Consumer WHERE \"REGION\" IS NOT NULL GROUP BY \"REGION\" ORDER BY Consumer_Count DESC",
+    "table": "consumer",
+    "explanation": "Consumer distribution across regions",
+    "chart_type": "bar",
+    "count": 6
+  },
+  {
+    "text": "show meters with hes",
+    "normalized": "show meters with hes",
+    "sql": "SELECT E.\"ID\", E.\"Meter_ID\", E.\"Status\", HM.\"HES_CD\", HM.\"HES_DESCRIPTION\" FROM Equipment E JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"",
+    "table": "equipment",
+    "explanation": "Meters linked to a HES system",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "show meters without hes",
+    "normalized": "show meters without hes",
+    "sql": "SELECT \"ID\", \"Meter_ID\", \"Status\", \"Manufacturer_ID\" FROM Equipment WHERE \"HES_ID\" IS NULL",
+    "table": "equipment",
+    "explanation": "Meters not linked to any HES system",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "show all device locations",
+    "normalized": "show all device locations",
+    "sql": "SELECT * FROM Device_Location",
+    "table": "device_location",
+    "explanation": "All device location records",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "show smart meters",
+    "normalized": "show smart meters",
+    "sql": "SELECT E.\"ID\", E.\"Meter_ID\", MM.\"Meter_Type\", MM.\"Description\", HM.\"HES_CD\", HM.\"IsSmart\" FROM Equipment E JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE HM.\"IsSmart\" = 'Y'",
+    "table": "equipment",
+    "explanation": "Smart meters linked to IsSmart HES systems",
+    "chart_type": "table",
+    "count": 6
+  },
+  {
+    "text": "show agricultural consumers",
+    "normalized": "show agricultural consumers",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"Cons_SEG\" = 'Agricultural'",
+    "table": "consumer",
+    "explanation": "Agricultural segment consumers with meter details",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show government consumers",
+    "normalized": "show government consumers",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE C.\"Cons_SEG\" = 'Government'",
+    "table": "consumer",
+    "explanation": "Government segment consumers with meter details",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show meters by model",
+    "normalized": "show meters by model",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Model_ID\" = '{model_id}'",
+    "params": [
+      "model_id"
+    ],
+    "table": "equipment",
+    "explanation": "Meters filtered by model ID",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show meters by manufacturer",
+    "normalized": "show meters by manufacturer filter",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Manufacturer_ID\" = '{manufacturer_id}'",
+    "params": [
+      "manufacturer_id"
+    ],
+    "table": "equipment",
+    "explanation": "Meters filtered by manufacturer",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show meters by utility office",
+    "normalized": "show meters by utility office",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE DL.\"Utility_Office_ID\" = '{office_id}'",
+    "params": [
+      "office_id"
+    ],
+    "table": "device_location",
+    "explanation": "Meters belonging to a specific utility office",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show meters with dip enabled",
+    "normalized": "show meters with dip enabled",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE MM.\"DIP\" = 'Y'",
+    "table": "material_master",
+    "explanation": "Meters that have DIP (Disconnect/Reconnect) feature enabled",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "count meters by model",
+    "normalized": "count meters by model",
+    "sql": "SELECT \"Model_ID\", COUNT(*) AS Meter_Count FROM Equipment WHERE \"Model_ID\" IS NOT NULL GROUP BY \"Model_ID\" ORDER BY Meter_Count DESC",
+    "table": "equipment",
+    "explanation": "Meter count by model",
+    "chart_type": "bar",
+    "count": 5
+  },
+  {
+    "text": "count devices per location",
+    "normalized": "count devices per location",
+    "sql": "SELECT \"DeviceLocationId\", COUNT(*) AS Device_Count FROM DevLoc_Device_Link GROUP BY \"DeviceLocationId\" ORDER BY Device_Count DESC",
+    "table": "devloc_device_link",
+    "explanation": "Device count per location",
+    "chart_type": "bar",
+    "count": 5
+  },
+  {
+    "text": "count vip consumers",
+    "normalized": "count vip consumers",
+    "sql": "SELECT \"VIP\", COUNT(*) AS Consumer_Count FROM Consumer GROUP BY \"VIP\" ORDER BY Consumer_Count DESC",
+    "table": "consumer",
+    "explanation": "Count of VIP vs non-VIP consumers",
+    "chart_type": "pie",
+    "count": 5
+  },
+  {
+    "text": "count smart meters",
+    "normalized": "count smart meters",
+    "sql": "SELECT HM.\"IsSmart\", COUNT(E.\"ID\") AS Meter_Count FROM Equipment E JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" GROUP BY HM.\"IsSmart\" ORDER BY Meter_Count DESC",
+    "table": "equipment",
+    "explanation": "Smart vs non-smart meter count",
+    "chart_type": "pie",
+    "count": 5
+  },
+  {
+    "text": "count meters without hes",
+    "normalized": "count meters without hes",
+    "sql": "SELECT COUNT(*) AS Meters_Without_HES FROM Equipment WHERE \"HES_ID\" IS NULL",
+    "table": "equipment",
+    "explanation": "Number of meters not linked to any HES system",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "count meters without consumer",
+    "normalized": "count meters without consumer",
+    "sql": "SELECT COUNT(*) AS Orphan_Meters FROM Equipment E LEFT JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" LEFT JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" WHERE CDL.\"ConsumerID\" IS NULL",
+    "table": "equipment",
+    "explanation": "Number of meters not linked to any consumer",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "count devices with gps",
+    "normalized": "count devices with gps",
+    "sql": "SELECT CASE WHEN \"GPS_LAT\" IS NOT NULL AND \"GPS_LONG\" IS NOT NULL THEN 'Has GPS' ELSE 'Missing GPS' END AS GPS_Status, COUNT(*) AS Device_Count FROM Device_Location GROUP BY GPS_Status",
+    "table": "device_location",
+    "explanation": "Count of devices with and without GPS",
+    "chart_type": "pie",
+    "count": 5
+  },
+  {
+    "text": "show device locations",
+    "normalized": "show device locations",
+    "sql": "SELECT \"ID\", \"Utility_ID\", \"Description\", \"Premise\", \"GPS_LAT\", \"GPS_LONG\", \"Utility_Office_ID\" FROM Device_Location",
+    "table": "device_location",
+    "explanation": "All device location records with GPS coordinates",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "find consumers without meters",
+    "normalized": "find consumers without meters",
+    "sql": "SELECT C.\"ID\", C.\"Utility_ID\", C.\"Cons_SEG\", C.\"Status\" FROM Consumer C LEFT JOIN ConsumerDevLocLink CDL ON C.\"ID\" = CDL.\"ConsumerID\" WHERE CDL.\"ConsumerID\" IS NULL",
+    "table": "consumer",
+    "explanation": "Consumers not linked to any device/meter",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show duplicate consumer utility ids",
+    "normalized": "find duplicate consumer utility ids",
+    "sql": "SELECT \"Utility_ID\", COUNT(*) AS Duplicate_Count FROM Consumer GROUP BY \"Utility_ID\" HAVING COUNT(*) > 1 ORDER BY Duplicate_Count DESC",
+    "table": "consumer",
+    "explanation": "Consumer records with duplicate Utility IDs",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show meters with no model",
+    "normalized": "show meters with no model",
+    "sql": "SELECT \"ID\", \"Meter_ID\", \"Status\", \"Manufacturer_ID\" FROM Equipment WHERE \"Model_ID\" IS NULL OR \"Model_ID\" = ''",
+    "table": "equipment",
+    "explanation": "Meters that have no model assigned",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show all links between device and location",
+    "normalized": "show all links between device location",
+    "sql": "SELECT DDL.\"ID\", DDL.\"EquipmentId\", DDL.\"DeviceLocationId\", DDL.\"ValidFromDate\", DDL.\"ValidToDate\", E.\"Meter_ID\" FROM DevLoc_Device_Link DDL JOIN Equipment E ON E.\"ID\" = DDL.\"EquipmentId\"",
+    "table": "devloc_device_link",
+    "explanation": "Device-to-location links with meter IDs",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show all consumer device mappings",
+    "normalized": "show all consumer device mappings",
+    "sql": "SELECT CDL.\"ID\", CDL.\"ConsumerID\", CDL.\"DeviceLocationId\", CDL.\"ValidFromDate\", CDL.\"ValidToDate\", C.\"Utility_ID\" AS Consumer_Utility_ID FROM ConsumerDevLocLink CDL JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\"",
+    "table": "consumerdevloclink",
+    "explanation": "Consumer-to-device-location mappings",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show active hes systems",
+    "normalized": "show active hes systems",
+    "sql": "SELECT * FROM HES_MASTER WHERE \"IsActive\" = 'Y'",
+    "table": "hes_master",
+    "explanation": "Only active HES systems",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show active material master",
+    "normalized": "show active material master",
+    "sql": "SELECT * FROM Material_Master WHERE \"IsActive\" = 'Y'",
+    "table": "material_master",
+    "explanation": "Active material master entries only",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show smart hes systems",
+    "normalized": "show smart hes systems",
+    "sql": "SELECT * FROM HES_MASTER WHERE \"IsSmart\" = 'Y'",
+    "table": "hes_master",
+    "explanation": "HES systems flagged as smart-meter capable",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show non smart meters",
+    "normalized": "show non smart meters",
+    "sql": "SELECT E.\"ID\", E.\"Meter_ID\", MM.\"Meter_Type\", MM.\"Description\" FROM Equipment E JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE HM.\"IsSmart\" IS NULL OR HM.\"IsSmart\" != 'Y'",
+    "table": "equipment",
+    "explanation": "Non-smart / conventional meters",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show latest meters",
+    "normalized": "show latest meters",
+    "sql": "SELECT * FROM Equipment ORDER BY \"ID\" DESC LIMIT 10",
+    "table": "equipment",
+    "explanation": "10 most recently added meters",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show latest consumers",
+    "normalized": "show latest consumers",
+    "sql": "SELECT * FROM Consumer ORDER BY \"ID\" DESC LIMIT 10",
+    "table": "consumer",
+    "explanation": "10 most recently added consumers",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show recently installed meters",
+    "normalized": "show recently installed meters",
+    "sql": "SELECT E.\"ID\", E.\"Meter_ID\", E.\"Status\", E.\"StartDate\", E.\"Manufacturer_ID\" FROM Equipment E WHERE E.\"Status\" = 'Installed' ORDER BY E.\"StartDate\" DESC LIMIT 50",
+    "table": "equipment",
+    "explanation": "Recently installed meters ordered by start date",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show meters installed this year",
+    "normalized": "show meters installed this year",
+    "sql": "SELECT E.\"ID\", E.\"Meter_ID\", E.\"Status\", E.\"StartDate\", E.\"Manufacturer_ID\" FROM Equipment E WHERE YEAR(E.\"StartDate\") = YEAR(CURRENT_DATE)",
+    "table": "equipment",
+    "explanation": "Meters installed in the current calendar year",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show consumer address details",
+    "normalized": "show consumer address details",
+    "sql": "SELECT \"ID\", \"Utility_ID\", \"FIRST_NAME\", \"Address1\", \"Address2\", \"Pin\", \"DISTRICT\", \"REGION\" FROM Consumer",
+    "table": "consumer",
+    "explanation": "Consumer name and address information",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "search consumer by name",
+    "normalized": "search consumer by name",
+    "sql": "SELECT * FROM Consumer WHERE LOWER(\"FIRST_NAME\") LIKE LOWER('%{name}%')",
+    "params": [
+      "name"
+    ],
+    "table": "consumer",
+    "explanation": "Search consumers by first name (partial match)",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show meters by functional class",
+    "normalized": "show meters by functional class",
+    "sql": "SELECT MM.\"Functional_Class\", COUNT(E.\"ID\") AS Meter_Count FROM Equipment E JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" WHERE MM.\"Functional_Class\" IS NOT NULL GROUP BY MM.\"Functional_Class\" ORDER BY Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "Meter count by functional class",
+    "chart_type": "bar",
+    "count": 5
+  },
+  {
+    "text": "show single phase meters",
+    "normalized": "show single phase meters",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE MM.\"Meter_Type\" LIKE '%Single%'",
+    "table": "material_master",
+    "explanation": "Single-phase meters with full details",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show three phase meters",
+    "normalized": "show three phase meters",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE MM.\"Meter_Type\" LIKE '%Three%'",
+    "table": "material_master",
+    "explanation": "Three-phase meters with full details",
+    "chart_type": "table",
+    "count": 5
+  },
+  {
+    "text": "show consumers with missing address",
+    "normalized": "show consumers with missing address",
+    "sql": "SELECT \"ID\", \"Utility_ID\", \"Cons_SEG\", \"DISTRICT\" FROM Consumer WHERE (\"Address1\" IS NULL OR \"Address1\" = '') AND (\"Address2\" IS NULL OR \"Address2\" = '')",
+    "table": "consumer",
+    "explanation": "Consumers with no address information",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "show expired device location links",
+    "normalized": "show expired device location links",
+    "sql": "SELECT \"ID\", \"EquipmentId\", \"DeviceLocationId\", \"ValidFromDate\", \"ValidToDate\" FROM DevLoc_Device_Link WHERE \"ValidToDate\" IS NOT NULL AND \"ValidToDate\" < CURRENT_DATE",
+    "table": "devloc_device_link",
+    "explanation": "Device-location links that have expired",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "show expired consumer device links",
+    "normalized": "show expired consumer device links",
+    "sql": "SELECT \"ID\", \"ConsumerID\", \"DeviceLocationId\", \"ValidFromDate\", \"ValidToDate\" FROM ConsumerDevLocLink WHERE \"ValidToDate\" IS NOT NULL AND \"ValidToDate\" < CURRENT_DATE",
+    "table": "consumerdevloclink",
+    "explanation": "Consumer-device links that have expired",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "show consumer details by pin code",
+    "normalized": "show consumer details by pin code",
+    "sql": "SELECT * FROM Consumer WHERE \"Pin\" = '{pin_code}'",
+    "params": [
+      "pin_code"
+    ],
+    "table": "consumer",
+    "explanation": "Consumers filtered by PIN / postal code",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "show meters with multiple channels",
+    "normalized": "show meters with multiple channels",
+    "sql": "SELECT MM.\"Utility_ID\", MM.\"Description\", MM.\"No_of_Channels\", COUNT(E.\"ID\") AS Meter_Count FROM Material_Master MM JOIN Equipment E ON E.\"Material_ID\" = MM.\"Utility_ID\" WHERE CAST(MM.\"No_of_Channels\" AS INTEGER) > 1 GROUP BY MM.\"Utility_ID\", MM.\"Description\", MM.\"No_of_Channels\" ORDER BY CAST(MM.\"No_of_Channels\" AS INTEGER) DESC",
+    "table": "material_master",
+    "explanation": "Meters that support more than one data channel",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "show currently active device location links",
+    "normalized": "show active device location links",
+    "sql": "SELECT DDL.\"ID\", DDL.\"EquipmentId\", DDL.\"DeviceLocationId\", DDL.\"ValidFromDate\", DDL.\"ValidToDate\" FROM DevLoc_Device_Link DDL WHERE DDL.\"ValidToDate\" IS NULL OR DDL.\"ValidToDate\" >= CURRENT_DATE",
+    "table": "devloc_device_link",
+    "explanation": "Active (non-expired) device-to-location links",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "show currently active consumer links",
+    "normalized": "show active consumer device links",
+    "sql": "SELECT CDL.\"ID\", CDL.\"ConsumerID\", CDL.\"DeviceLocationId\", CDL.\"ValidFromDate\", CDL.\"ValidToDate\" FROM ConsumerDevLocLink CDL WHERE CDL.\"ValidToDate\" IS NULL OR CDL.\"ValidToDate\" >= CURRENT_DATE",
+    "table": "consumerdevloclink",
+    "explanation": "Active consumer-device links",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "describe equipment",
+    "normalized": "describe equipment table",
+    "sql": "DESCRIBE Equipment",
+    "table": "equipment",
+    "explanation": "Column schema for Equipment table",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "describe consumer",
+    "normalized": "describe consumer table",
+    "sql": "DESCRIBE Consumer",
+    "table": "consumer",
+    "explanation": "Column schema for Consumer table",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "summarize equipment",
+    "normalized": "summarize equipment",
+    "sql": "SUMMARIZE Equipment",
+    "table": "equipment",
+    "explanation": "Statistical summary of Equipment table",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "summarize consumer",
+    "normalized": "summarize consumer",
+    "sql": "SUMMARIZE Consumer",
+    "table": "consumer",
+    "explanation": "Statistical summary of Consumer table",
+    "chart_type": "table",
+    "count": 4
+  },
+  {
+    "text": "describe device location",
+    "normalized": "describe device location table",
+    "sql": "DESCRIBE Device_Location",
+    "table": "device_location",
+    "explanation": "Column schema for Device_Location table",
+    "chart_type": "table",
+    "count": 3
+  },
+  {
+    "text": "describe material master",
+    "normalized": "describe material master table",
+    "sql": "DESCRIBE Material_Master",
+    "table": "material_master",
+    "explanation": "Column schema for Material_Master table",
+    "chart_type": "table",
+    "count": 3
+  },
+  {
+    "text": "describe hes master",
+    "normalized": "describe hes master table",
+    "sql": "DESCRIBE HES_MASTER",
+    "table": "hes_master",
+    "explanation": "Column schema for HES_MASTER table",
+    "chart_type": "table",
+    "count": 3
+  },
+  {
+    "text": "Show  me all the meter whose status is installed but validfrom is not null or 9999-03-31",
+    "normalized": "show me all the meter whose status is installed but validfrom is not null or 9999-03-31",
+    "sql": "SELECT \n E.\"Meter_ID\" AS Meter_No,\n MM.\"Meter_Type\",\n MM.\"DIP\",\n HM.\"HES_CD\" AS HES_Name,\n E.\"ID\" AS EQUIPMENT_ID,\n MM.\"Utility_ID\" AS Material_ID,\n C.\"Cons_SEG\",\n CDL.\"ConsumerID\",\n E.\"Manufacturer_ID\",\n C.\"Utility_ID\" AS ConsumerNo,\n E.\"Status\",\n DL.\"Utility_Office_ID\",\n MM.\"Description\" AS Attribute,\n E.\"Model_ID\",\n DL.\"GPS_LAT\",\n DL.\"GPS_LONG\",\n DDL.\"ValidFromDate\",\n DDL.\"ValidToDate\"\nFROM Equipment E\nJOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\"\nJOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\"\nJOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\"\nJOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\"\nJOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\"\nLEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"\nWHERE \n E.\"Status\" = 'Installed'\n AND DDL.\"ValidToDate\" IS NOT NULL\n AND DDL.\"ValidToDate\" != CAST('9999-12-31' AS DATE)",
+    "table": "material_master",
+    "explanation": "The following SQL query retrieves all meters with Status = 'Installed' from the Equipment table join",
+    "chart_type": "table",
+    "count": 3
+  },
+  {
+    "text": "show me the Consumer  detail for meter number CRYT3000602",
+    "normalized": "the consumer detail for meter number cryt3000602",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No, C.\"FIRST_NAME\", C.\"Address1\", C.\"Address2\", C.\"Pin\", C.\"DISTRICT\", C.\"REGION\", C.\"Essential_Service\", C.\"VIP\" FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Meter_ID\" = 'CRYT3000602'",
+    "table": "material_master",
+    "explanation": "Here are the Consumer details for Meter Number CRYT3000602 retrieved using the Master Join across al",
+    "chart_type": "table",
+    "count": 3
+  },
+  {
+    "text": "show meter details with consumer and location",
+    "normalized": "ter details with consumer and location",
+    "sql": "SELECT E.Meter_ID AS Meter_No, MM.Meter_Type, MM.DIP, HM.HES_CD AS HES_Name, E.ID AS EQUIPMENT_ID, MM.Utility_ID AS Material_ID, C.Cons_SEG, CDL.ConsumerID, E.Manufacturer_ID, C.Utility_ID AS ConsumerNo, E.Status, DL.Utility_Office_ID, MM.Description AS Attribute, E.Model_ID, DL.GPS_LAT, DL.GPS_LONG, C.Utility_ID AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.ID = DDL.EquipmentId JOIN Device_Location DL ON DL.ID = DDL.DeviceLocationId JOIN ConsumerDevLocLink CDL ON DDL.DeviceLocationId = CDL.DeviceLocationId JOIN Consumer C ON C.ID = CDL.ConsumerID JOIN Material_Master MM ON E.Material_ID = MM.Utility_ID LEFT JOIN HES_MASTER HM ON E.HES_ID = HM.ID",
+    "table": "material_master",
+    "explanation": "Full meter details (all tables joined)",
+    "chart_type": "table",
+    "count": 1
+  },
+  {
+    "text": "show all data",
+    "normalized": "show all data",
+    "sql": "SELECT\n  E.\"Meter_ID\" AS Meter_No,\n  MM.\"Meter_Type\",\n  MM.\"DIP\",\n  HM.\"HES_CD\" AS HES_Name,\n  E.\"ID\" AS EQUIPMENT_ID,\n  MM.\"Utility_ID\" AS Material_ID,\n  C.\"Cons_SEG\",\n  CDL.\"ConsumerID\",\n  E.\"Manufacturer_ID\",\n  C.\"Utility_ID\" AS ConsumerNo,\n  E.\"Status\",\n  DL.\"Utility_Office_ID\",\n  MM.\"Description\" AS Attribute,\n  E.\"Model_ID\",\n  DL.\"GPS_LAT\",\n  DL.\"GPS_LONG\",\n  C.\"Utility_ID\" AS Account_No,\n  C.\"FIRST_NAME\",\n  C.\"Address1\",\n  C.\"Address2\",\n  C.\"Pin\",\n  C.\"DISTRICT\",\n  C.\"REGION\",\n  C.\"VIP\",\n  C.\"Essential_Service\",\n  E.\"Device_Type\",\n  E.\"StartDate\",\n  E.\"EndDate\",\n  DL.\"Utility_ID\" AS Location_Utility_ID,\n  DL.\"Premise\",\n  DDL.\"ValidFromDate\" AS Device_Link_From,\n  DDL.\"ValidToDate\" AS Device_Link_To,\n  CDL.\"ValidFromDate\" AS Consumer_Link_From,\n  CDL.\"ValidToDate\" AS Consumer_Link_To,\n  HM.\"HES_DESCRIPTION\",\n  HM.\"IsSmart\"\nFROM Equipment E\nJOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\"\nJOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\"\nJOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\"\nJOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\"\nJOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\"\nLEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"\nORDER BY E.\"ID\" ASC",
+    "table": "material_master",
+    "explanation": "Here is a complete overview of all data across all 7 tables using the MASTER JOIN. This combines Equ",
+    "chart_type": "table",
+    "count": 1
+  },
+  {
+    "text": "How many meters are active vs inactive, broken down by HES system (Cuculus-JIO vs others)?",
+    "normalized": "how many meters are active vs inactive, broken down by hes system (cuculus-jio vs others)?",
+    "sql": "SELECT COALESCE(\"HM\".\"HES_CD\", 'No HES Assigned') AS \"HES_System\", \"E\".\"Status\" AS \"Meter_Status\", COUNT(\"E\".\"ID\") AS \"Meter_Count\" FROM Equipment \"E\" LEFT JOIN HES_MASTER \"HM\" ON \"E\".\"HES_ID\" = \"HM\".\"ID\" GROUP BY COALESCE(\"HM\".\"HES_CD\", 'No HES Assigned'), \"E\".\"Status\" ORDER BY \"HES_System\", \"Meter_Count\" DESC",
+    "table": "material_master",
+    "explanation": "Here is the breakdown of meters by Status and HES System:\n\nThe query groups all equipment records by",
+    "chart_type": "bar",
+    "count": 1
+  },
+  {
+    "text": "Which manufacturers have the highest number of inactive meters across all HES systems?",
+    "normalized": "which manufacturers have the highest number of inactive meters across all hes systems?",
+    "sql": "SELECT E.\"Manufacturer_ID\", COALESCE(HM.\"HES_CD\", 'No HES Assigned') AS HES_Name, COUNT(E.\"ID\") AS Inactive_Meter_Count FROM Equipment E LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Status\" != 'Installed' GROUP BY E.\"Manufacturer_ID\", COALESCE(HM.\"HES_CD\", 'No HES Assigned') ORDER BY Inactive_Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "Manufacturers with the Highest Number of Inactive Meters Across All HES Systems:\n\nThis query identif",
+    "chart_type": "bar",
+    "count": 1
+  },
+  {
+    "text": "show me meter detail for meter number CRYT3000602",
+    "normalized": "meter detail for meter number cryt3000602",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Meter_ID\" = 'CRYT3000602'",
+    "table": "material_master",
+    "explanation": "Here are the meter details for Meter Number **CRYT3000602** fetched using the Master Join across all",
+    "chart_type": "table",
+    "count": 1
+  },
+  {
+    "text": "show me the Consumer detail for meter number CRYT3000602, CRYT3000707",
+    "normalized": "the consumer detail for meter number cryt3000602, cryt3000707",
+    "sql": "SELECT E.\"Meter_ID\" AS Meter_No, MM.\"Meter_Type\", MM.\"DIP\", HM.\"HES_CD\" AS HES_Name, E.\"ID\" AS EQUIPMENT_ID, MM.\"Utility_ID\" AS Material_ID, C.\"Cons_SEG\", CDL.\"ConsumerID\", E.\"Manufacturer_ID\", C.\"Utility_ID\" AS ConsumerNo, E.\"Status\", DL.\"Utility_Office_ID\", MM.\"Description\" AS Attribute, E.\"Model_ID\", DL.\"GPS_LAT\", DL.\"GPS_LONG\", C.\"Utility_ID\" AS Account_No, C.\"FIRST_NAME\", C.\"Address1\", C.\"Address2\", C.\"Pin\", C.\"DISTRICT\", C.\"REGION\", C.\"Essential_Service\", C.\"VIP\" FROM Equipment E JOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\" WHERE E.\"Meter_ID\" IN ('CRYT3000602', 'CRYT3000707')",
+    "table": "material_master",
+    "explanation": "Here are the Consumer details for Meter Numbers CRYT3000602 and CRYT3000707 retrieved using the Mast",
+    "chart_type": "table",
+    "count": 1
+  },
+  {
+    "text": "show all data available",
+    "normalized": "show all data available",
+    "sql": "SELECT\n  E.\"Meter_ID\" AS Meter_No,\n  MM.\"Meter_Type\",\n  MM.\"DIP\",\n  HM.\"HES_CD\" AS HES_Name,\n  E.\"ID\" AS EQUIPMENT_ID,\n  MM.\"Utility_ID\" AS Material_ID,\n  C.\"Cons_SEG\",\n  CDL.\"ConsumerID\",\n  E.\"Manufacturer_ID\",\n  C.\"Utility_ID\" AS ConsumerNo,\n  E.\"Status\",\n  DL.\"Utility_Office_ID\",\n  MM.\"Description\" AS Attribute,\n  E.\"Model_ID\",\n  DL.\"GPS_LAT\",\n  DL.\"GPS_LONG\",\n  C.\"Utility_ID\" AS Account_No,\n  C.\"FIRST_NAME\",\n  C.\"Address1\",\n  C.\"Address2\",\n  C.\"Pin\",\n  C.\"DISTRICT\",\n  C.\"REGION\",\n  C.\"VIP\",\n  C.\"Essential_Service\",\n  C.\"Status\" AS Consumer_Status,\n  DL.\"Utility_ID\" AS Location_Utility_ID,\n  DL.\"Description\" AS Location_Description,\n  DL.\"Premise\",\n  DDL.\"ValidFromDate\" AS Device_Link_From,\n  DDL.\"ValidToDate\" AS Device_Link_To,\n  CDL.\"ValidFromDate\" AS Consumer_Link_From,\n  CDL.\"ValidToDate\" AS Consumer_Link_To,\n  HM.\"HES_DESCRIPTION\",\n  HM.\"IsSmart\",\n  MM.\"Device_Type\" AS Material_Device_Type,\n  MM.\"No_of_Channels\",\n  MM.\"IsActive\" AS Material_IsActive\nFROM Equipment E\nJOIN DevLoc_Device_Link DDL ON E.\"ID\" = DDL.\"EquipmentId\"\nJOIN Device_Location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\"\nJOIN ConsumerDevLocLink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\"\nJOIN Consumer C ON C.\"ID\" = CDL.\"ConsumerID\"\nJOIN Material_Master MM ON E.\"Material_ID\" = MM.\"Utility_ID\"\nLEFT JOIN HES_MASTER HM ON E.\"HES_ID\" = HM.\"ID\"\nORDER BY E.\"ID\" ASC",
+    "table": "material_master",
+    "explanation": "Here is a complete overview of all data available across the 7 tables in the database. The MASTER JO",
+    "chart_type": "table",
+    "count": 1
+  },
+  {
+    "text": "How many meters are currently in 'Installed' status vs other statuses?",
+    "normalized": "how many meters are currently in 'installed' status vs other statuses?",
+    "sql": "SELECT \"Status\", COUNT(*) AS Meter_Count, ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS Percentage FROM Equipment GROUP BY \"Status\" ORDER BY Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "Here is the breakdown of meters by their current installation status:\n\n📊 STATUS DISTRIBUTION:\n\n✅ Ins",
+    "chart_type": "bar",
+    "count": 1
+  },
+  {
+    "text": "show all data present",
+    "normalized": "show all data present",
+    "sql": "SELECT 'consumer' AS Table_Name, COUNT(*) AS Row_Count FROM consumer\nUNION ALL\nSELECT 'consumerdevloclink', COUNT(*) FROM consumerdevloclink\nUNION ALL\nSELECT 'device_location', COUNT(*) FROM device_location\nUNION ALL\nSELECT 'devloc_device_link', COUNT(*) FROM devloc_device_link\nUNION ALL\nSELECT 'equipment', COUNT(*) FROM equipment\nUNION ALL\nSELECT 'hes_master', COUNT(*) FROM hes_master\nUNION ALL\nSELECT 'material_master', COUNT(*) FROM material_master",
+    "table": "material_master",
+    "explanation": "Here is all the data present across all loaded tables:\n\n📦 **Tables Loaded (7 tables):**\n\n1. **consum",
+    "chart_type": "bar",
+    "count": 1,
+    "trained": false
+  },
+  {
+    "text": "How many meters are installed vs. not installed?",
+    "normalized": "how many meters are installed vs. not installed?",
+    "sql": "SELECT E.\"Status\", COUNT(*) AS Meter_Count FROM equipment E JOIN devloc_device_link DDL ON E.\"ID\" = DDL.\"EquipmentId\" JOIN device_location DL ON DL.\"ID\" = DDL.\"DeviceLocationId\" JOIN consumerdevloclink CDL ON DDL.\"DeviceLocationId\" = CDL.\"DeviceLocationId\" JOIN consumer C ON C.\"ID\" = CDL.\"ConsumerID\" JOIN material_master MM ON E.\"Material_ID\" = MM.\"Utility_ID\" LEFT JOIN hes_master HM ON E.\"HES_ID\" = HM.\"ID\" GROUP BY E.\"Status\" ORDER BY Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "Here is the breakdown of meters by installation status:\n\n📊 **Meter Status Summary:**\n\n| Status | Cou",
+    "chart_type": "bar",
+    "count": 1,
+    "trained": false
+  },
+  {
+    "text": "Show meters grouped by HES system (Cuculus-JIO etc.)",
+    "normalized": "show meters grouped by hes system (cuculus-jio etc.)",
+    "sql": "SELECT HM.HES_CD AS HES_Name, COUNT(E.ID) AS Meter_Count FROM equipment E LEFT JOIN hes_master HM ON E.HES_ID = HM.ID GROUP BY HM.HES_CD ORDER BY Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "Here is the breakdown of meters grouped by HES System:\n\n📊 **Meters Grouped by HES System:**\n\n| HES S",
+    "chart_type": "bar",
+    "count": 1,
+    "trained": false
+  },
+  {
+    "text": "Which HES system has the most installed meters?",
+    "normalized": "which hes system has most installed meters?",
+    "sql": "SELECT HM.HES_CD AS HES_Name, COUNT(E.ID) AS Installed_Meter_Count FROM equipment E LEFT JOIN hes_master HM ON E.HES_ID = HM.ID WHERE E.\"Status\" = 'Installed' GROUP BY HM.HES_CD ORDER BY Installed_Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "The query below groups all installed meters by their HES system and ranks them by count. This will s",
+    "chart_type": "bar",
+    "count": 1,
+    "trained": false
+  },
+  {
+    "text": "Show meters grouped by HES system and meter type",
+    "normalized": "show meters grouped by hes system meter type",
+    "sql": "SELECT HM.HES_CD AS HES_Name, MM.Meter_Type, COUNT(E.ID) AS Meter_Count FROM equipment E JOIN devloc_device_link DDL ON E.ID = DDL.EquipmentId JOIN device_location DL ON DL.ID = DDL.DeviceLocationId JOIN consumerdevloclink CDL ON DDL.DeviceLocationId = CDL.DeviceLocationId JOIN consumer C ON C.ID = CDL.ConsumerID JOIN material_master MM ON E.Material_ID = MM.Utility_ID LEFT JOIN hes_master HM ON E.HES_ID = HM.ID GROUP BY HM.HES_CD, MM.Meter_Type ORDER BY HM.HES_CD, Meter_Count DESC",
+    "table": "material_master",
+    "explanation": "Here is the breakdown of meters grouped by HES System and Meter Type:\n\n📊 **Meters Grouped by HES Sys",
+    "chart_type": "bar",
+    "count": 1,
+    "trained": false
+  },
+  {
+    "text": "show details of this meter numeber CRYT3000647",
+    "normalized": "show details of this meter numeber",
+    "sql": "SELECT * FROM (SELECT \"ID\", 'consumer' AS _source_file FROM Consumer\nUNION ALL\nSELECT \"ID\", 'consumerdevloclink' AS _source_file FROM ConsumerDevLocLink\nUNION ALL\nSELECT \"ID\", 'device_location' AS _source_file FROM Device_Location\nUNION ALL\nSELECT \"ID\", 'devloc_device_link' AS _source_file FROM DevLoc_Device_Link\nUNION ALL\nSELECT \"ID\", 'equipment' AS _source_file FROM Equipment\nUNION ALL\nSELECT \"ID\", 'hes_master' AS _source_file FROM HES_MASTER\nUNION ALL\nSELECT \"ID\", 'material_master' AS _source_file FROM Material_Master) _sq LIMIT 10000",
+    "table": "",
+    "explanation": "Combined: consumer, consumerdevloclink, device_location, devloc_device_link, equipment, hes_master, material_master",
+    "chart_type": "table",
+    "count": 1,
+    "trained": false
+  }
+]

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataGrid Intelligence | Electricity Analytics</title>
+
+  <!-- Plotly.js — Interactive charts library (CDN se load hota hai) -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+  <!-- Apni CSS file — saari styling yahan hai -->
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     MAIN APP CONTAINER
+     CSS Grid layout: 64px topbar + remaining height main content
+     ════════════════════════════════════════════════════════════════════════ -->
+<div class="app">
+
+  <!-- ── TOP NAVIGATION BAR ──────────────────────────────────────────────── -->
+  <header class="topbar">
+
+    <!-- Brand / Logo Section -->
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <!-- Lightning bolt SVG icon -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2 4 14h7l-1 8 10-13h-7l1-7Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div>
+        <h1>DataGrid Intelligence</h1>
+        <span>Smart meter and electricity data analytics</span>
+      </div>
+    </div>
+
+    <!-- Live Status Metrics -->
+    <div class="top-metrics">
+      <!-- Connection status dot + label -->
+      <div class="metric">
+        <span id="conn-dot" class="dot"></span>
+        <strong id="conn-label">Connecting</strong>
+      </div>
+
+      <!-- Active AI engine name -->
+      <div class="metric">
+        <strong id="engine-label">AI Engine</strong>
+      </div>
+
+      <!-- Loaded tables count -->
+      <div class="metric">
+        <span>Tables</span>
+        <strong id="metric-tables">0</strong>
+      </div>
+
+      <!-- Loaded documents count -->
+      <div class="metric">
+        <span>Documents</span>
+        <strong id="metric-docs">0</strong>
+      </div>
+
+      <!-- Max rows per query -->
+      <div class="metric">
+        <span>Rows limit</span>
+        <strong id="metric-limit">0</strong>
+      </div>
+    </div>
+
+    <!-- Top Action Buttons -->
+    <div class="top-actions">
+      <button class="text-btn" id="refresh-btn" title="Refresh loaded data">
+        Refresh
+      </button>
+      <button class="icon-btn" id="clear-btn" title="Clear chat memory">
+        <!-- Trash/delete icon -->
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+          <path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7l1-4h4l1 4"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </header><!-- /topbar -->
+
+  <!-- ── MAIN 3-COLUMN LAYOUT ────────────────────────────────────────────── -->
+  <main class="layout">
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         LEFT SIDEBAR — File Upload + Data Inventory
+         ═══════════════════════════════════════════════════════════════════ -->
+    <aside class="sidebar">
+
+      <!-- Upload Section Header -->
+      <div class="section-title">
+        <h2>Load Data</h2>
+      </div>
+
+      <!-- Drag & Drop Upload Zone
+           - label[for="file-input"] = click pe hidden input trigger hoga
+           - drag-over JS events class "drag" add/remove karte hain -->
+      <label id="drop-zone" class="drop-zone" for="file-input">
+        <!-- Upload arrow icon -->
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+          <path d="M12 16V4m0 0 4 4m-4-4-4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <strong>Upload electricity data</strong>
+        <!-- ⚠️ SIRF PARQUET (tabular) + PDF/DOCX/TXT (documents) -->
+        <span>
+          Tabular: <b>.parquet files ONLY</b><br>
+          Documents: .pdf, .docx, .txt, .md &nbsp;(up to 500 MB)
+        </span>
+      </label>
+
+      <!-- Hidden file input — accept attribute limits browser file picker
+           sirf parquet aur document formats dikhata hai -->
+      <input
+        id="file-input"
+        type="file"
+        multiple
+        accept=".parquet,.pdf,.docx,.txt,.md"
+      />
+      <!--
+        accept=".parquet,.pdf,.docx,.txt,.md"
+        ↑ Browser ke file picker mein sirf ye extensions dikhenge
+        .csv, .xlsx, .xls, .json etc. filter out ho jaayenge
+      -->
+
+      <!-- Data Inventory List -->
+      <div class="inventory">
+        <div class="section-title">
+          <h2>Data Inventory</h2>
+          <span id="inventory-count" class="scope-label">0 files</span>
+        </div>
+
+        <!-- Dynamically populated by app.js renderFiles() -->
+        <div id="file-list" class="file-list">
+          <div id="empty-files" class="empty-state">
+            Upload .parquet files for meter, consumer, billing, outage, or
+            HES data. Upload PDF/DOCX/TXT for documents.
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Footer: Tables + Docs counters -->
+      <div class="sidebar-footer">
+        <div class="panel count-card">
+          <strong id="count-tables">0</strong>
+          <span>Tables</span>
+        </div>
+        <div class="panel count-card">
+          <strong id="count-docs">0</strong>
+          <span>Documents</span>
+        </div>
+      </div>
+
+    </aside><!-- /sidebar -->
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         CENTER PANEL — Query Scope + Chat + Composer
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="workspace">
+
+      <!-- Query Scope Selector (which tables to query)
+           Populated dynamically by renderScope() -->
+      <div id="scope-bar" class="scope-bar panel">
+        <span class="scope-label">Query scope</span>
+        <button class="chip selected" data-scope="active">Active table</button>
+      </div>
+
+      <!-- Chat Message Area -->
+      <div id="chat" class="chat panel">
+
+        <!-- Welcome screen (hidden after first query) -->
+        <div id="welcome" class="welcome">
+          <h2>Ask practical questions about your electricity data</h2>
+          <p>
+            Upload a .parquet dataset, then ask for load trends, meter counts,
+            consumer details, HES distribution, outage patterns, consumption
+            anomalies, or SQL-backed reports. Charts appear automatically when
+            the result is chartable.
+          </p>
+          <!-- Starter buttons populated by buildStarters() in app.js -->
+          <div class="starter-grid" id="starter-grid"></div>
+        </div>
+
+        <!-- Thinking indicator (shown while AI processes) -->
+        <div id="thinking" class="thinking">
+          <span class="spinner"></span>
+          <span>Analyzing data and preparing results...</span>
+        </div>
+
+      </div><!-- /chat -->
+
+      <!-- Query Input Composer -->
+      <div class="composer panel">
+        <textarea
+          id="query-input"
+          placeholder="Example: Show the monthly energy consumption trend as a line chart"
+        ></textarea>
+        <!-- Send button — disabled until connected + text entered -->
+        <button id="send-btn" class="send-btn" title="Send query" disabled>
+          <!-- Paper airplane / send icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+    </section><!-- /workspace -->
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         RIGHT PANEL — Results: Chart + Table + SQL
+         ═══════════════════════════════════════════════════════════════════ -->
+    <aside class="results">
+
+      <!-- Summary Cards: rows, columns, chart type -->
+      <div class="result-summary">
+        <div class="panel summary-card">
+          <span>Rows returned</span>
+          <strong id="summary-rows">0</strong>
+        </div>
+        <div class="panel summary-card">
+          <span>Columns</span>
+          <strong id="summary-cols">0</strong>
+        </div>
+        <div class="panel summary-card">
+          <span>Chart type</span>
+          <strong id="summary-chart">None</strong>
+        </div>
+      </div>
+
+      <!-- Tab Navigation: Chart / Table / SQL -->
+      <div class="tabs">
+        <button class="tab active" data-tab="chart">Chart</button>
+        <button class="tab" data-tab="table">Table</button>
+        <button class="tab" data-tab="sql">SQL</button>
+      </div>
+
+      <!-- Tab Content Panels -->
+      <div class="panel result-body">
+
+        <!-- CHART TAB -->
+        <section id="panel-chart" class="tab-panel active">
+          <div class="chart-panel">
+            <!-- Empty state (before first chart) -->
+            <div id="chart-empty" class="placeholder">
+              Charts will appear here after your query returns numeric or category data.
+            </div>
+            <!-- Plotly chart render target (Plotly.react() targets this ID) -->
+            <div id="chart" style="display:none"></div>
+          </div>
+          <!-- Manual chart type overrides -->
+          <div class="chart-tools">
+            <button data-chart="bar">Bar</button>
+            <button data-chart="line">Line</button>
+            <button data-chart="area">Area</button>
+            <button data-chart="pie">Pie</button>
+            <button data-chart="scatter">Scatter</button>
+            <button data-chart="histogram">Histogram</button>
+          </div>
+        </section>
+
+        <!-- TABLE TAB -->
+        <section id="panel-table" class="tab-panel">
+          <div class="table-wrap">
+            <!-- Data table (hidden until results arrive) -->
+            <table id="data-table" style="display:none">
+              <thead id="table-head"></thead>
+              <tbody id="table-body"></tbody>
+            </table>
+            <div id="table-empty" class="placeholder">
+              Returned records will appear here.
+            </div>
+          </div>
+          <div class="table-footer">
+            <span id="table-info">No rows loaded</span>
+            <button class="text-btn" id="download-btn">Download CSV</button>
+          </div>
+        </section>
+
+        <!-- SQL TAB -->
+        <section id="panel-sql" class="tab-panel">
+          <div id="sql-empty" class="placeholder">
+            Generated SQL will appear here when available.
+          </div>
+          <div id="sql-result" class="sql-box" style="display:none">
+            <div class="sql-head">
+              <span>Generated DuckDB SQL</span>
+              <button id="copy-sql" class="chip">Copy</button>
+            </div>
+            <pre id="sql-text"></pre>
+          </div>
+        </section>
+
+      </div><!-- /result-body -->
+    </aside><!-- /results -->
+
+  </main><!-- /layout -->
+</div><!-- /app -->
+
+<!-- Toast notifications container (position: fixed, bottom-right) -->
+<div id="toast-wrap" class="toast-wrap"></div>
+
+<!-- Apni JavaScript file — saara logic yahan hai -->
+<script src="/static/app.js"></script>
+
+</body>
+</html>

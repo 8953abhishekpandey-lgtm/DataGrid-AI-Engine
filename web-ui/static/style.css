@@ -1,0 +1,818 @@
+/*
+ * ╔══════════════════════════════════════════════════════════════════════════╗
+ * ║  style.css  —  DataGrid Intelligence · All Styles                      ║
+ * ╠══════════════════════════════════════════════════════════════════════════╣
+ * ║  Organization:                                                          ║
+ * ║   1. CSS Variables (Design Tokens)  — colors, fonts, shadows           ║
+ * ║   2. Reset & Base                   — box-sizing, body                 ║
+ * ║   3. Layout                         — app grid, topbar, 3-col layout   ║
+ * ║   4. Sidebar                        — upload zone, file list           ║
+ * ║   5. Workspace                      — scope bar, chat, composer        ║
+ * ║   6. Results Panel                  — chart, table, SQL tabs           ║
+ * ║   7. Components                     — buttons, badges, toasts, etc.    ║
+ * ║   8. Animations                     — spinner                          ║
+ * ║   9. Responsive                     — mobile / tablet breakpoints      ║
+ * ╚══════════════════════════════════════════════════════════════════════════╝
+ */
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 1: CSS CUSTOM PROPERTIES (Design Tokens)
+   Ye variables poori application mein consistent colors aur values dete hain.
+   Ek jagah change karo — sab jagah reflect hoga.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Backgrounds ── */
+  --bg:           #f5f7fb;  /* Page background: light gray-blue                */
+  --panel:        #ffffff;  /* Card/panel background: white                    */
+  --panel-soft:   #f8fafc;  /* Input backgrounds: very light gray              */
+  --panel-strong: #eef6f9;  /* Highlighted panels: light teal-gray             */
+
+  /* ── Text Colors ── */
+  --ink:   #162033;  /* Primary text: dark navy (readable on white)            */
+  --muted: #637083;  /* Secondary/label text: medium gray                      */
+
+  /* ── Border Colors ── */
+  --line:        #dce4ec;  /* Default borders: light blue-gray                 */
+  --line-strong: #c5d3df;  /* Stronger borders (focus rings, etc.)             */
+
+  /* ── Brand (Teal) ── */
+  --brand:      #0f7c90;  /* Primary brand color — buttons, links, accents     */
+  --brand-dark: #0a5868;  /* Darker brand — hover states, headings             */
+  --brand-soft: #e4f4f7;  /* Very light brand — hover backgrounds              */
+
+  /* ── Semantic Colors ── */
+  --power:      #f5a623;  /* Orange — insights, warnings, highlights           */
+  --power-soft: #fff4df;  /* Light orange background                           */
+  --green:      #248a52;  /* Success color                                     */
+  --green-soft: #eaf6ef;  /* Success background                                */
+  --red:        #c2413d;  /* Error/danger color                                */
+  --red-soft:   #fcebea;  /* Error background                                  */
+  --purple:     #6b5bd3;  /* Documents icon color                              */
+
+  /* ── Effects ── */
+  --shadow: 0 18px 45px rgba(22, 32, 51, 0.08); /* Cards ka drop shadow       */
+  --radius: 8px;  /* Border radius — saare rounded corners isi se             */
+
+  /* ── Typography ── */
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace; /* Code font */
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", sans-serif;  /* UI font stack        */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 2: RESET & BASE STYLES
+   Browser defaults normalize karo
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Box model: sab elements mein border aur padding width mein include ho */
+* { box-sizing: border-box; }
+
+/* Full height layout ke liye */
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  /* Topbar ke peechhe gradient effect: teal fade → page background */
+  background:
+    linear-gradient(180deg,
+      rgba(228, 244, 247, 0.9),    /* Top: light teal tint               */
+      rgba(245, 247, 251, 0.1) 280px  /* 280px ke baad transparent        */
+    ),
+    var(--bg);  /* Base page color                                            */
+  color:       var(--ink);
+  font-family: var(--sans);
+  font-size:   14px;
+  overflow:    hidden;  /* Scroll sirf inner panels mein hoga (body nahi)      */
+}
+
+/* Form elements ka font inherit karwao (browser default override) */
+button, textarea, input { font: inherit; }
+button { cursor: pointer; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 3: MAIN LAYOUT
+   CSS Grid se 2-level layout: topbar + main content
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* App container: 2 rows — 64px header + rest for content */
+.app {
+  height: 100vh;  /* Full viewport height                                      */
+  display: grid;
+  grid-template-rows: 64px 1fr;  /* 64px topbar, baki sab main content       */
+}
+
+/* ── TOP NAVIGATION BAR ── */
+.topbar {
+  display:      flex;
+  align-items:  center;
+  gap:          18px;
+  padding:      0 24px;
+  background:   rgba(255, 255, 255, 0.86);  /* Semi-transparent white         */
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);  /* Glass morphism effect — content blur karo  */
+}
+
+/* Brand logo area */
+.brand {
+  display:     flex;
+  align-items: center;
+  gap:         12px;
+  min-width:   270px;  /* Sidebar ke saath align rehne ke liye                */
+}
+
+.brand-mark {
+  width:         38px;
+  height:        38px;
+  border-radius: 8px;
+  display:       grid;
+  place-items:   center;  /* Icon center mein                                  */
+  color:         #fff;
+  background:    linear-gradient(135deg, var(--brand), #1ea8a8);
+  box-shadow:    0 10px 25px rgba(15, 124, 144, 0.28);  /* Teal glow effect   */
+}
+
+.brand h1 {
+  margin:          0;
+  font-size:       17px;
+  line-height:     1.1;
+  letter-spacing:  0;
+}
+
+.brand span {
+  display:    block;
+  margin-top: 2px;
+  color:      var(--muted);
+  font-size:  12px;
+}
+
+/* Status metrics row in topbar */
+.top-metrics {
+  display:   flex;
+  align-items: center;
+  gap:       10px;
+  flex:      1;        /* Remaining space le lo                                */
+  min-width: 0;        /* Flex shrink allow karo                               */
+}
+
+.metric {
+  display:       flex;
+  align-items:   center;
+  gap:           8px;
+  min-width:     118px;
+  height:        38px;
+  padding:       0 12px;
+  background:    var(--panel-soft);
+  border:        1px solid var(--line);
+  border-radius: var(--radius);
+  color:         var(--muted);
+}
+.metric strong { color: var(--ink); font-size: 14px; }
+
+/* Connection status indicator dot */
+.dot {
+  width:         9px;
+  height:        9px;
+  border-radius: 999px;          /* Perfect circle                            */
+  background:    var(--red);     /* Default: red = offline/error              */
+  box-shadow:    0 0 0 4px var(--red-soft);  /* Soft glow ring                */
+}
+.dot.ok {
+  background:  var(--green);            /* Online = green                     */
+  box-shadow:  0 0 0 4px var(--green-soft);
+}
+
+/* ── 3-COLUMN MAIN LAYOUT ── */
+.layout {
+  display: grid;
+  grid-template-columns: 300px minmax(360px, 1fr) 520px;
+  /* 300px sidebar | flexible center | 520px results                          */
+  min-height: 0;    /* Grid item ko shrink allow karo (important!)             */
+  overflow:   hidden;
+}
+
+/* Saare 3 panels mein overflow handle hoga andar se */
+.sidebar, .workspace, .results { min-height: 0; overflow: hidden; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 4: LEFT SIDEBAR — Upload + File List
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.sidebar {
+  display:        flex;
+  flex-direction: column;
+  padding:        18px;
+  border-right:   1px solid var(--line);
+  background:     rgba(255, 255, 255, 0.74);  /* Slightly transparent          */
+}
+
+/* Generic panel card styling */
+.panel {
+  background:    var(--panel);
+  border:        1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow:    0 8px 28px rgba(22, 32, 51, 0.05);
+}
+
+/* Section heading row (title + count/action) */
+.section-title {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             8px;
+  margin-bottom:   10px;
+}
+.section-title h2 {
+  margin:           0;
+  font-size:        13px;
+  text-transform:   uppercase;
+  letter-spacing:   0.08em;
+  color:            var(--muted);
+}
+
+/* Drag & drop upload area */
+.drop-zone {
+  padding:       18px;
+  text-align:    center;
+  border:        1px dashed var(--line-strong);  /* Dashed border = upload feel */
+  background:    var(--panel);
+  border-radius: var(--radius);
+  transition:    0.18s ease;   /* Smooth hover/drag transition                 */
+  cursor:        pointer;
+}
+.drop-zone.drag,
+.drop-zone:hover {
+  border-color: var(--brand);      /* Active state: teal border               */
+  background:   var(--brand-soft); /* Active state: light teal background     */
+}
+.drop-zone svg    { color: var(--brand); margin-bottom: 10px; }
+.drop-zone strong { display: block; font-size: 14px; }
+.drop-zone span   { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+/* Hidden file input — label click se trigger hoga */
+#file-input { display: none; }
+
+/* Inventory section (flex container for file list) */
+.inventory {
+  flex:       1;         /* Remaining sidebar space le lo                      */
+  min-height: 0;
+  margin-top: 18px;
+  display:    flex;
+  flex-direction: column;
+}
+
+/* Scrollable file list */
+.file-list {
+  flex:       1;
+  min-height: 0;
+  overflow:   auto;  /* Scroll when many files                                 */
+  display:    flex;
+  flex-direction: column;
+  gap:        8px;
+  padding-right: 2px;  /* Scrollbar ke liye space                              */
+}
+
+/* Empty state placeholder */
+.empty-state {
+  height:     100%;
+  display:    grid;
+  place-items: center;
+  text-align: center;
+  color:      var(--muted);
+  border:     1px dashed var(--line);
+  border-radius: var(--radius);
+  padding:    18px;
+}
+
+/* Individual file item card */
+.file-item {
+  display:               grid;
+  grid-template-columns: 38px 1fr 30px;  /* icon | info | delete              */
+  gap:                   10px;
+  align-items:           center;
+  padding:               10px;
+  background:            var(--panel);
+  border:                1px solid var(--line);
+  border-radius:         var(--radius);
+  cursor:                pointer;
+  transition:            0.12s ease;
+}
+.file-item:hover         { border-color: var(--line-strong); }
+/* Active/selected table = teal highlight */
+.file-item.active {
+  border-color: var(--brand);
+  background:   var(--brand-soft);
+}
+
+/* File type icon */
+.file-icon {
+  width:         38px;
+  height:        38px;
+  display:       grid;
+  place-items:   center;
+  border-radius: 7px;
+  font-size:     11px;
+  font-weight:   750;
+  color:         var(--brand);
+  background:    var(--brand-soft);
+}
+/* Document icons — purple theme */
+.file-icon.doc { color: var(--purple); background: #efedff; }
+
+/* File name (truncated) */
+.file-name {
+  overflow:      hidden;
+  white-space:   nowrap;
+  text-overflow: ellipsis;
+  font-weight:   650;
+}
+.file-meta { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+/* Delete file button */
+.delete-btn {
+  width:      30px;
+  height:     30px;
+  border:     0;
+  border-radius: 7px;
+  background: transparent;
+  color:      var(--muted);
+}
+.delete-btn:hover { background: var(--red-soft); color: var(--red); }
+
+/* Bottom count cards */
+.sidebar-footer {
+  margin-top: 14px;
+  display:    grid;
+  grid-template-columns: 1fr 1fr;  /* 2 equal columns                        */
+  gap:        8px;
+}
+.count-card { padding: 12px; text-align: center; }
+.count-card strong { display: block; font-size: 20px; color: var(--brand); }
+.count-card span   { color: var(--muted); font-size: 12px; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 5: CENTER WORKSPACE — Scope + Chat + Composer
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.workspace {
+  display:               grid;
+  grid-template-rows:    auto 1fr auto;  /* scope | chat (flex) | composer    */
+  padding:               18px;
+  gap:                   14px;
+}
+
+/* Query scope selector chips bar */
+.scope-bar {
+  display:    flex;
+  align-items: center;
+  gap:        8px;
+  min-height: 42px;
+  padding:    8px;
+  overflow-x: auto;  /* Horizontal scroll when many table chips               */
+}
+
+/* Table selection chips */
+.chip {
+  border:        1px solid var(--line);
+  border-radius: 999px;  /* Pill shape                                        */
+  background:    var(--panel);
+  color:         var(--muted);
+  padding:       6px 10px;
+  white-space:   nowrap;
+  font-size:     12px;
+  cursor:        pointer;
+  transition:    0.14s ease;
+}
+.chip.selected {
+  border-color: var(--brand);
+  background:   var(--brand-soft);
+  color:        var(--brand-dark);
+}
+
+/* Label text in scope/status bars */
+.scope-label { color: var(--muted); font-size: 12px; margin-left: 4px; white-space: nowrap; }
+
+/* Chat messages scroll area */
+.chat {
+  min-height: 0;
+  overflow:   auto;  /* Scroll when messages overflow                          */
+  padding:    22px;
+}
+
+/* Welcome screen (centered, shown before first query) */
+.welcome {
+  height:         100%;
+  display:        flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width:      780px;
+  margin:         0 auto;
+  text-align:     center;
+}
+.welcome h2 { margin: 0; font-size: 30px; letter-spacing: 0; }
+.welcome p  { color: var(--muted); line-height: 1.7; margin: 12px auto 0; max-width: 620px; }
+
+/* 2x3 starter question grid */
+.starter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:       10px;
+  margin-top: 24px;
+}
+.starter {
+  text-align:    left;
+  border:        1px solid var(--line);
+  background:    var(--panel);
+  border-radius: var(--radius);
+  padding:       12px 14px;
+  color:         var(--ink);
+  transition:    0.14s ease;
+}
+.starter:hover { border-color: var(--brand); background: var(--brand-soft); }
+
+/* Chat message row */
+.message       { display: flex; gap: 10px; margin-bottom: 16px; }
+.message.user  { justify-content: flex-end; }  /* User messages right-align  */
+
+/* Avatar circle */
+.avatar {
+  flex:          0 0 34px;   /* Shrink/grow nahi karna                        */
+  width:         34px;
+  height:        34px;
+  border-radius: 8px;
+  display:       grid;
+  place-items:   center;
+  background:    var(--brand-soft);
+  color:         var(--brand);
+  font-weight:   800;
+}
+/* User avatar — amber/gold color scheme */
+.message.user .avatar { order: 2; background: var(--power-soft); color: #9c6500; }
+
+/* Message bubble */
+.bubble {
+  max-width:     min(680px, 78%);
+  padding:       12px 14px;
+  border:        1px solid var(--line);
+  background:    var(--panel);
+  border-radius: var(--radius);
+  line-height:   1.62;
+  box-shadow:    0 6px 22px rgba(22, 32, 51, 0.04);
+}
+/* User bubble — inverted (teal background, white text) */
+.message.user .bubble {
+  background:   var(--brand);
+  border-color: var(--brand);
+  color:        #fff;
+}
+
+/* Engine badge (e.g., "🤖 Claude AI") */
+.badge {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           6px;
+  height:        24px;
+  padding:       0 8px;
+  border-radius: 999px;
+  background:    var(--panel-strong);
+  color:         var(--brand-dark);
+  font-size:     12px;
+  font-weight:   650;
+  margin-bottom: 8px;
+}
+
+/* Insights section (amber left border) */
+.insight {
+  margin-top:    10px;
+  padding:       10px 12px;
+  border-left:   3px solid var(--power);
+  background:    var(--power-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color:         #7a520f;
+}
+
+/* Follow-up question pills */
+.follow-ups { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.follow-ups button {
+  border:        1px solid var(--line);
+  border-radius: 999px;
+  background:    var(--panel-soft);
+  color:         var(--brand-dark);
+  padding:       6px 10px;
+  font-size:     12px;
+  transition:    0.14s ease;
+}
+.follow-ups button:hover { border-color: var(--brand); background: var(--brand-soft); }
+
+/* Inline SQL code box inside chat bubbles */
+.sql-box {
+  margin-top:    10px;
+  border:        1px solid var(--line);
+  border-radius: var(--radius);
+  overflow:      hidden;
+}
+.sql-head {
+  display:         flex;
+  justify-content: space-between;
+  gap:             10px;
+  padding:         7px 10px;
+  background:      var(--panel-soft);
+  color:           var(--muted);
+  font-size:       12px;
+}
+.sql-box pre {
+  margin:      0;
+  padding:     10px;
+  overflow:    auto;
+  color:       #123347;
+  font-family: var(--mono);
+  font-size:   12px;
+  white-space: pre-wrap;   /* Long SQL lines wrap karo (horizontal scroll nahi) */
+}
+
+/* Thinking/processing indicator */
+.thinking {
+  display:     none;   /* JS se "flex" kiya jaata hai jab AI process kare      */
+  align-items: center;
+  gap:         10px;
+  color:       var(--muted);
+  margin:      10px 0 0 44px;  /* Avatar width ke barabar indent               */
+}
+
+/* Query input + send button */
+.composer {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr auto;  /* textarea | send button                 */
+  gap: 10px;
+}
+.composer textarea {
+  width:      100%;
+  min-height: 50px;
+  max-height: 140px;
+  resize:     none;   /* Manual resize disable — auto-size JS se hoga          */
+  border:     1px solid var(--line);
+  border-radius: var(--radius);
+  padding:    13px 14px;
+  outline:    none;
+  color:      var(--ink);
+  background: var(--panel-soft);
+  transition: 0.14s ease;
+}
+.composer textarea:focus {
+  border-color: var(--brand);
+  box-shadow:   0 0 0 3px rgba(15, 124, 144, 0.12);  /* Focus ring            */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 6: RIGHT RESULTS PANEL — Chart + Table + SQL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.results {
+  display:               grid;
+  grid-template-rows:    auto auto 1fr;  /* summary | tabs | content          */
+  gap:                   12px;
+  padding:               18px 18px 18px 0;  /* Left padding nahi (gap se hai) */
+}
+
+/* 3 summary stat cards */
+.result-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.summary-card { padding: 12px; }
+.summary-card span   { display: block; color: var(--muted); font-size: 12px; }
+.summary-card strong { display: block; margin-top: 3px; font-size: 18px; }
+
+/* Tab navigation bar */
+.tabs {
+  display:       flex;
+  padding:       4px;
+  background:    var(--panel-soft);
+  border:        1px solid var(--line);
+  border-radius: var(--radius);
+}
+.tab {
+  flex:          1;       /* Equal width tabs                                  */
+  border:        0;
+  background:    transparent;
+  border-radius: 6px;
+  height:        34px;
+  color:         var(--muted);
+  transition:    0.14s ease;
+}
+/* Active tab = white card with shadow */
+.tab.active {
+  background:  var(--panel);
+  color:       var(--brand-dark);
+  box-shadow:  0 3px 10px rgba(22, 32, 51, 0.08);
+}
+
+/* Tab content container */
+.result-body { min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Individual tab panels */
+.tab-panel        { display: none; flex: 1; min-height: 0; overflow: hidden; }
+.tab-panel.active { display: flex; flex-direction: column; }
+
+/* Chart panel inner padding */
+.chart-panel { padding: 12px; }
+
+/* Plotly chart target element */
+#chart { width: 100%; height: 100%; min-height: 380px; }
+
+/* Placeholder shown when no data */
+.placeholder {
+  height:     100%;
+  min-height: 360px;
+  display:    grid;
+  place-items: center;
+  text-align: center;
+  color:      var(--muted);
+  padding:    24px;
+}
+
+/* Chart type override buttons */
+.chart-tools {
+  display:    flex;
+  flex-wrap:  wrap;
+  gap:        7px;
+  padding:    10px 12px;
+  border-top: 1px solid var(--line);
+}
+.chart-tools button {
+  border:        1px solid var(--line);
+  border-radius: 999px;
+  background:    var(--panel);
+  color:         var(--muted);
+  padding:       6px 10px;
+  font-size:     12px;
+  transition:    0.14s ease;
+}
+.chart-tools button:hover { border-color: var(--brand); color: var(--brand); }
+
+/* Scrollable data table wrapper */
+.table-wrap { min-height: 0; overflow: auto; }
+
+/* Data table styling */
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td {
+  padding:       9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align:    left;
+  white-space:   nowrap;
+  max-width:     190px;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+}
+th {
+  position:        sticky;       /* Header scroll ke saath nahi hogi           */
+  top:             0;
+  z-index:         1;            /* Content ke upar rehni chahiye              */
+  background:      var(--panel-soft);
+  color:           var(--brand-dark);
+  font-size:       11px;
+  text-transform:  uppercase;
+  letter-spacing:  0.04em;
+}
+/* Numeric cells — monospace font, brand color */
+td.num { color: var(--brand-dark); font-family: var(--mono); }
+
+/* Table footer: row count + download button */
+.table-footer {
+  flex:            0 0 auto;
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  gap:             10px;
+  padding:         10px 12px;
+  border-top:      1px solid var(--line);
+  color:           var(--muted);
+  font-size:       12px;
+}
+
+/* Full SQL display panel */
+#sql-result { display: block; }
+#sql-result .sql-box { margin: 0; border-radius: 0; border: 0; }
+#sql-result pre { padding: 18px; font-size: 13px; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 7: SHARED COMPONENTS
+   Buttons, badges, toasts — poori app mein reusable
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Base button styles (3 variants: icon-btn, text-btn, send-btn) */
+.icon-btn, .text-btn, .send-btn {
+  border:        1px solid var(--line);
+  border-radius: var(--radius);
+  background:    var(--panel);
+  color:         var(--ink);
+  min-height:    38px;
+  transition:    0.18s ease;
+}
+/* Square icon-only button */
+.icon-btn { width: 38px; display: grid; place-items: center; }
+
+/* Text button with optional icon */
+.text-btn { padding: 0 12px; display: inline-flex; align-items: center; gap: 8px; }
+
+/* Hover: teal accent for both */
+.icon-btn:hover,
+.text-btn:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
+
+/* Send/submit button — filled teal */
+.send-btn {
+  width:        52px;
+  background:   var(--brand);
+  color:        #fff;
+  border-color: var(--brand);
+}
+/* Disabled state — gray (connected nahi / khali input) */
+.send-btn:disabled {
+  background:   var(--line-strong);
+  border-color: var(--line-strong);
+  cursor:       not-allowed;
+}
+
+/* Toast notification container (fixed bottom-right) */
+.toast-wrap {
+  position: fixed;
+  right:    18px;
+  bottom:   18px;
+  display:  grid;
+  gap:      8px;
+  z-index:  10;  /* Sab ke upar                                               */
+}
+
+/* Individual toast notification */
+.toast {
+  max-width:    340px;
+  padding:      11px 13px;
+  border:       1px solid var(--line);
+  border-radius: var(--radius);
+  background:   var(--panel);
+  box-shadow:   var(--shadow);
+  font-size:    13px;
+}
+.toast.success { border-color: #9bd5b4; background: var(--green-soft); color: var(--green); }
+.toast.error   { border-color: #efb2af; background: var(--red-soft);   color: var(--red);   }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 8: ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Rotating loading spinner */
+.spinner {
+  width:         18px;
+  height:        18px;
+  border:        2px solid var(--line);
+  border-top-color: var(--brand);  /* Sirf top side colored = spinning effect */
+  border-radius: 999px;
+  animation:     spin 0.8s linear infinite;  /* Continuous rotation            */
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }  /* 0° se 360° = full rotation            */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION 9: RESPONSIVE BREAKPOINTS
+   Chhote screens ke liye layout adjust karo
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet: 780px–1180px — results panel hide karo */
+@media (max-width: 1180px) {
+  .layout { grid-template-columns: 280px minmax(360px, 1fr); }
+  /* Right panel nahi dikhai dega */
+  .results { display: none; }
+}
+
+/* Mobile: <780px — single column, scroll */
+@media (max-width: 780px) {
+  body { overflow: auto; }   /* Mobile mein body scroll allow karo             */
+  .app { height: auto; min-height: 100vh; }  /* Fixed height nahi             */
+
+  /* Topbar: wrapping layout */
+  .topbar { height: auto; padding: 12px; flex-wrap: wrap; }
+  .top-metrics { order: 3; width: 100%; overflow-x: auto; }
+
+  /* Layout: single column */
+  .layout  { display: block; overflow: visible; }
+  .sidebar { overflow: visible; padding: 12px; }
+  .workspace { overflow: visible; padding: 12px; }
+
+  /* Chat minimum height */
+  .chat { min-height: 420px; }
+
+  /* Starters single column */
+  .starter-grid { grid-template-columns: 1fr; }
+}
